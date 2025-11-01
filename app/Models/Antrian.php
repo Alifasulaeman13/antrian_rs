@@ -9,6 +9,7 @@ class Antrian extends Model
 {
     protected $fillable = [
         'loket_id',
+        'tanggal',
         'nomor_antrian',
         'status',
         'waktu_panggil',

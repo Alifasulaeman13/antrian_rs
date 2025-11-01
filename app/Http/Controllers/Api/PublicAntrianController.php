@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 
-class AntrianController extends Controller
+class PublicAntrianController extends Controller
 {
     public function generate(Request $request, Loket $loket)
     {
@@ -41,23 +41,6 @@ class AntrianController extends Controller
         });
 
         return response()->json($antrian, Response::HTTP_CREATED);
-    }
-
-    public function updateStatus(Request $request, Antrian $antrian)
-    {
-        $data = $request->validate([
-            'status' => 'required|in:menunggu,dipanggil,selesai',
-        ]);
-
-        $antrian->status = $data['status'];
-        if ($data['status'] === 'dipanggil') {
-            $antrian->waktu_panggil = now();
-        } elseif ($data['status'] === 'menunggu') {
-            $antrian->waktu_panggil = null;
-        }
-        $antrian->save();
-
-        return response()->json($antrian);
     }
 
     public function currentCalled(Request $request)

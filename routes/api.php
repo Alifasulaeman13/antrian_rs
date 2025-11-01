@@ -4,10 +4,16 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\LoketController;
 use App\Http\Controllers\Api\AntrianController;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\PublicAntrianController;
 
 // Auth routes
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
+
+// Public Antrian routes - Tidak memerlukan autentikasi
+Route::post('/public/lokets/{loket}/antrians/generate', [PublicAntrianController::class, 'generate']);
+Route::get('/public/antrians/dipanggil', [PublicAntrianController::class, 'currentCalled']);
+Route::get('/public/lokets/{loket}/antrians/menunggu', [PublicAntrianController::class, 'listWaiting']);
 
 // Protected routes
 Route::middleware('auth:sanctum')->group(function () {

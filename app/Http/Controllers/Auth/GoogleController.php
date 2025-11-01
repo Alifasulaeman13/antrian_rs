@@ -40,9 +40,9 @@ class GoogleController extends Controller
                     'name' => $googleUser->name,
                     'email' => $googleUser->email,
                     'password' => bcrypt(rand(100000, 999999)),
-                    'role' => 'user',
+                    'role' => 'petugas',
                 ]);
-                Log::info('Google Auth: User baru dibuat', ['email' => $user->email]);
+                Log::info('Google Auth: User baru dibuat dengan role petugas', ['email' => $user->email]);
             }
             
             // Login user
